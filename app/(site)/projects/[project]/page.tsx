@@ -22,7 +22,7 @@ const project = async ({params}:Props)  => {
           className='bg-gray-100 rounded-lg text-gray-700 font-bold py-3 px-4 hover:bg-gray-900 hover:text-white hover:scale-105 transition'
           > View Project</a>
       </header>
-      <Image height = {1080} width = {1920} src = {`${project.image}`} className='mt-10 border-2 border-gray-700 object-cover rounded-xl '></Image>
+      <Image height = {1080} width = {1920} src = {`${project.image}`} alt= {project.name} className='mt-10 border-2 border-gray-700 object-cover rounded-xl '></Image>
       <div className='text-lg text-grey-400 mt-5'>
         {/* content */}
         <PortableText value={project.content}></PortableText>
