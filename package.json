@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@portabletext/react": "^3.0.9",
-    "next": "latest",
+    "@sanity/vision": "^3.17.0",
+    "daisyui": "^3.8.3",
+    "next": "^13.5.4",
     "next-sanity": "^5.5.4",
     "react": "latest",
     "react-dom": "latest",

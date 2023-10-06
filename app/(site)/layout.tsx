@@ -30,6 +30,7 @@ export default async function RootLayout({
           {pages.map((page:pageType)=>(
             <Link className="text-gray-600 text-sm hover:underline hover:scale-105 transition" key= {page._id} href={`/page/${page.slug}`}>{page.title}</Link>
           ))}
+          <Link className="text-gray-600 text-sm hover:underline hover:scale-105 transition"  href={`/blog`}>Blog </Link>
 
           </div>  
         </header>

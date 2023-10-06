@@ -1,6 +1,7 @@
 import { createClient, groq } from "next-sanity";
 import { projectType} from "../types/Project";
 import { pageType } from "../types/Page";
+import { BlogPost } from "../types/BlogPost";
 
 const client = createClient(
     {
@@ -65,6 +66,37 @@ export async function getPage(slug:string): Promise<pageType> {
         title,
         "slug": slug.current,
         content,
+
+    }`, {slug})
+    
+}
+
+
+export async function getPosts(): Promise<BlogPost[]>{
+
+
+    return client.fetch(groq`*[_type == "blog_post"]{
+        _id,
+        _createdAt,
+        title,
+        "image": image.asset->url,
+        "slug" : slug.current
+        
+      }`);
+}
+
+export async function getPost(slug:string): Promise<BlogPost> {
+
+    
+    return client.fetch(groq`*[_type == "blog_post" && slug.current == $slug][0]{
+        _id,
+        _createdAt,
+        title,
+        "image": image.asset->url,
+        "slug": slug.current,
+        content,
+        code_snippet,
+    
 
     }`, {slug})
     
