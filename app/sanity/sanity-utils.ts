@@ -2,8 +2,8 @@ import { createClient, groq } from "next-sanity";
 import { projectType} from "../types/Project";
 import { pageType } from "../types/Page";
 import { BlogPost } from "../types/BlogPost";
-
-const client = createClient(
+import { revalidatePath } from "next/cache";
+export const client = createClient(
     {
         projectId: '7i0v69ny',
         dataset: 'production',
@@ -14,8 +14,6 @@ const client = createClient(
 
 
 export async function getProjects(): Promise<projectType[]>{
-
-
     return client.fetch(groq`*[_type == "project"]{
         _id,
         _createdAt,
@@ -25,7 +23,7 @@ export async function getProjects(): Promise<projectType[]>{
         url,
         content,
 
-    }`);
+    }`,{cache: "no-store"});
 }
 
 export async function getProject(slug:string): Promise<projectType> {
@@ -40,21 +38,19 @@ export async function getProject(slug:string): Promise<projectType> {
         url,
         content,
 
-    }`, {slug})
+    }`, {slug},{cache: "no-store"})
     
 }
 
 
 export async function getPages(): Promise<pageType[]>{
-
-
     return client.fetch(groq`*[_type == "page"]{
         _id,
         _createdAt,
         title,
         "slug": slug.current,
 
-    }`);
+    }`,{cache: "no-store"});
 }
 
 export async function getPage(slug:string): Promise<pageType> {
@@ -67,7 +63,7 @@ export async function getPage(slug:string): Promise<pageType> {
         "slug": slug.current,
         content,
 
-    }`, {slug})
+    }`, {slug},{cache: "no-store"})
     
 }
 
@@ -82,7 +78,7 @@ export async function getPosts(): Promise<BlogPost[]>{
         "image": image.asset->url,
         "slug" : slug.current
         
-      }`);
+      }`,{cache: "no-store"});
 }
 
 export async function getPost(slug:string): Promise<BlogPost> {
@@ -98,6 +94,6 @@ export async function getPost(slug:string): Promise<BlogPost> {
         code_snippet,
     
 
-    }`, {slug})
+    }`, {slug},{cache: "no-store"})
     
 }

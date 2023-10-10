@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { getProjects, getPages } from "../sanity/sanity-utils"
 import Image from "next/image"
+import { revalidatePath } from "next/cache";
 
 export default async function Home() {
+
    const projects = await getProjects();
-   
+   console.log(projects)
   return (
     <div >
       <h1 className="text-7xl font-extrabold">
