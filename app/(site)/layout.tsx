@@ -22,7 +22,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className='max-w-3xl mx-auto py-10 xs:p-10'>
-        <header className='py-5 flex items-center justify-between'>
+        <header className='py-5 flex items-center justify-between '>
           <Link href={"/"} className=" font-extrabold bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 bg-clip-text text-transparent hover:scale-125 transition">Trey</Link>
 
           
