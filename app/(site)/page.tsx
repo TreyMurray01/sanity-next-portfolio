@@ -6,7 +6,6 @@ import { revalidatePath } from "next/cache";
 export default async function Home() {
 
    const projects = await getProjects();
-   console.log(projects)
   return (
     <div >
       <h1 className="text-7xl font-extrabold">
